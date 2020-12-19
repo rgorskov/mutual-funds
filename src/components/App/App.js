@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="row">
-      <aside className=""></aside>
-      <main className=""></main>
+      <aside className="col"></aside>
+      <main className="col"></main>
     </div>
   );
 }
