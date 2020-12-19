@@ -1,1 +1,1 @@
-VKR
+Mutual funds
