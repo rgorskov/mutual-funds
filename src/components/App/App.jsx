@@ -8,9 +8,9 @@ import { Route, Redirect } from 'react-router-dom';
 import LoadData from '../LoadData/LoadData';
 import DataInfo from '../DataInfo/DataInfo';
 import SetUpParams from '../SetUpParams/SetUpParams';
-import Risk from '../Risk/RiskPage';
+import Risk from '../Risk/Risk';
 import Yield from '../Yield/Yield';
-import BestChoice from '../BestChoicePage/BestChoicePage';
+import BestChoice from '../BestChoice/BestChoice';
 import Page from '../Page/Page';
 
 class App extends React.Component {
@@ -50,43 +50,43 @@ class App extends React.Component {
                         />
                         <Route
                             path="/setupparams"
-                            render={() => {
+                            render={() => (
                                 <Page
                                     initialized={this.state.initialized}
                                     title="Настройка параметров"
                                     renderComponent={() => <SetUpParams />}
-                                />;
-                            }}
+                                />
+                            )}
                         />
                         <Route
                             path="/risk"
-                            render={() => {
+                            render={() => (
                                 <Page
                                     initialized={this.state.initialized}
                                     title="Оценка риска"
                                     renderComponent={() => <Risk />}
-                                />;
-                            }}
+                                />
+                            )}
                         />
                         <Route
                             path="/yield"
-                            render={() => {
+                            render={() => (
                                 <Page
                                     initialized={this.state.initialized}
                                     title="Оценка доходности"
                                     renderComponent={() => <Yield />}
-                                />;
-                            }}
+                                />
+                            )}
                         />
                         <Route
                             path="/bestchoice"
-                            render={() => {
+                            render={() => (
                                 <Page
                                     initialized={this.state.initialized}
                                     title="Выбор наилучшего ПИФа"
                                     renderComponent={() => <BestChoice />}
-                                />;
-                            }}
+                                />
+                            )}
                         />
                         <Redirect exact from="/" to="/loaddata" />
                     </main>

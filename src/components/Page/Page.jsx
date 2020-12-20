@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Page.module.scss';
 
 export default function ({ initialized, title, renderComponent }) {
+    console.log(title);
     return (
         <div className={s.page}>
             <h1 className={s.title}>{title}</h1>
