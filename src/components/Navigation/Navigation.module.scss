@@ -34,13 +34,13 @@
     padding: 10px 22px;
 
     i {
-        color: #c4c7db;
+        color: #78909c;
         display: inline-block;
         margin-right: 18px;
         font-size: 16px;
     }
     span {
-        color: #7f8690;
+        color: #455a64;
     }
 
     &:hover {
@@ -56,8 +56,19 @@
             color: rgba(90, 106, 207, 0.8);
         }
         span {
-            color: rgba(90, 106, 207, 0.9);
+            color: rgba(90, 106, 207, 1);
             font-weight: 700;
+        }
+    }
+
+    &.disabled {
+        pointer-events: none;
+        cursor: not-allowed;
+        i {
+            color: rgba(207, 216, 220, 1);
+        }
+        span {
+            color: rgba(207, 216, 220, 1);
         }
     }
 }
