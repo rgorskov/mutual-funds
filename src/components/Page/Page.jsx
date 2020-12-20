@@ -3,18 +3,19 @@ import s from './Page.module.scss';
 
 export default function ({ initialized, title, renderComponent }) {
     return (
-        <div>
-            <h1>{title}</h1>
+        <div className={s.page}>
+            <h1 className={s.title}>{title}</h1>
             {(() => {
                 if (initialized) {
                     return renderComponent();
                 } else {
                     return (
-                        <div className="h-100 d-flex align-items-center justify-content-center">
-                            <h4 className={s.noDataMessage}>
+                        <p className={s.noDataMessage}>
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>
                                 Для начала работы необходимо загрузить данные
-                            </h4>
-                        </div>
+                            </span>
+                        </p>
                     );
                 }
             })()}
