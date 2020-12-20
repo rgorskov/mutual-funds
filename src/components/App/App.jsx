@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.scss';
 import Navigation from '../Navigation/Navigation';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import LoadData from '../LoadData/LoadData';
 import DataInfo from '../DataInfo/DataInfo';
 import SetUpParams from '../SetUpParams/SetUpParams';
@@ -24,6 +24,7 @@ function App() {
           <Route path="/risk" component={Risk} />
           <Route path="/yield" component={Yield} />
           <Route path="/bestchoice" component={BestChoice} />
+          <Redirect exact from="/" to="/loaddata" />
         </main>
       </div>
     </div>
