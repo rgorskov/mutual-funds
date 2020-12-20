@@ -1,5 +1,20 @@
 @import '../../assets/fonts/fonts.scss';
 
-.App {
-  font-family: Roboto;
+body {
+  height: 100vh;
+  background-color: #d0d3e1;
+}
+
+#root {
+  height: 100%;
+}
+
+.nav {
+  width: 300px;
+  height: 100%;
+}
+
+.main {
+  height: 100%;
+  background-color: #fff;
 }
