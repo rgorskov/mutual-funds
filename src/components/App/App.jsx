@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+// import 'bootstrap-icons/font/bootstrap-icons.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.scss';
 import Navigation from '../Navigation/Navigation';
 import { Route, Redirect } from 'react-router-dom';
