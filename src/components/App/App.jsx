@@ -4,12 +4,12 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.scss';
 import Navigation from '../Navigation/Navigation';
 import { Route, Redirect } from 'react-router-dom';
-import LoadData from '../LoadData/LoadData';
-import DataInfo from '../DataInfo/DataInfo';
-import SetUpParams from '../SetUpParams/SetUpParams';
-import Risk from '../Risk/Risk';
-import Yield from '../Yield/Yield';
-import BestChoice from '../BestChoice/BestChoice';
+import LoadDataPage from '../LoadDataPage/LoadDataPage';
+import DataInfoPage from '../DataInfoPage/DataInfoPage';
+import SetUpParamsPage from '../SetUpParamsPage/SetUpParamsPage';
+import RiskPage from '../RiskPage/RiskPage';
+import YieldPage from '../YieldPage/YieldPage';
+import BestChoicePage from '../BestChoicePage/BestChoicePage';
 
 class App extends React.Component {
     constructor(props) {
@@ -23,15 +23,49 @@ class App extends React.Component {
             <div className="container-fluid g-0 h-100">
                 <div className="h-100 d-flex">
                     <aside className="nav">
-                        <Navigation disableLinks={!this.state.initialized} />
+                        <Navigation />
                     </aside>
                     <main className="main flex-grow-1">
-                        <Route path="/loaddata" component={LoadData} />
-                        <Route path="/datainfo" component={DataInfo} />
-                        <Route path="/setupparams" component={SetUpParams} />
-                        <Route path="/risk" component={Risk} />
-                        <Route path="/yield" component={Yield} />
-                        <Route path="/bestchoice" component={BestChoice} />
+                        <Route
+                            path="/loaddata"
+                            render={() => <LoadDataPage />}
+                        />
+                        <Route
+                            path="/datainfo"
+                            render={() => (
+                                <DataInfoPage
+                                    initialized={this.state.initialized}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/setupparams"
+                            render={() => <SetUpParamsPage />}
+                        />
+                        <Route
+                            path="/risk"
+                            render={() => (
+                                <RiskPage
+                                    initialized={this.state.initialized}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/yield"
+                            render={() => (
+                                <YieldPage
+                                    initialized={this.state.initialized}
+                                />
+                            )}
+                        />
+                        <Route
+                            path="/bestchoice"
+                            render={() => (
+                                <BestChoicePage
+                                    initialized={this.state.initialized}
+                                />
+                            )}
+                        />
                         <Redirect exact from="/" to="/loaddata" />
                     </main>
                 </div>
