@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SetUpParams() {
-  return <div>Доходность</div>;
+    return <div></div>;
 }
 
 export default SetUpParams;

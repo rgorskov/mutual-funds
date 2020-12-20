@@ -4,12 +4,13 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.scss';
 import Navigation from '../Navigation/Navigation';
 import { Route, Redirect } from 'react-router-dom';
-import LoadDataPage from '../LoadDataPage/LoadDataPage';
-import DataInfoPage from '../DataInfoPage/DataInfoPage';
-import SetUpParamsPage from '../SetUpParamsPage/SetUpParamsPage';
-import RiskPage from '../RiskPage/RiskPage';
-import YieldPage from '../YieldPage/YieldPage';
-import BestChoicePage from '../BestChoicePage/BestChoicePage';
+import LoadData from '../LoadData/LoadData';
+import DataInfo from '../DataInfo/DataInfo';
+import SetUpParams from '../SetUpParams/SetUpParams';
+import Risk from '../Risk/RiskPage';
+import Yield from '../Yield/Yield';
+import BestChoice from '../BestChoicePage/BestChoicePage';
+import Page from '../Page/Page';
 
 class App extends React.Component {
     constructor(props) {
@@ -28,43 +29,63 @@ class App extends React.Component {
                     <main className="main flex-grow-1">
                         <Route
                             path="/loaddata"
-                            render={() => <LoadDataPage />}
+                            render={() => (
+                                <Page
+                                    initialized={true}
+                                    title="Исходные данные"
+                                    renderComponent={() => <LoadData />}
+                                />
+                            )}
                         />
                         <Route
                             path="/datainfo"
                             render={() => (
-                                <DataInfoPage
+                                <Page
                                     initialized={this.state.initialized}
+                                    title="Обзор данных"
+                                    renderComponent={() => <DataInfo />}
                                 />
                             )}
                         />
                         <Route
                             path="/setupparams"
-                            render={() => <SetUpParamsPage />}
+                            render={() => {
+                                <Page
+                                    initialized={this.state.initialized}
+                                    title="Настройка параметров"
+                                    renderComponent={() => <SetUpParams />}
+                                />;
+                            }}
                         />
                         <Route
                             path="/risk"
-                            render={() => (
-                                <RiskPage
+                            render={() => {
+                                <Page
                                     initialized={this.state.initialized}
-                                />
-                            )}
+                                    title="Оценка риска"
+                                    renderComponent={() => <Risk />}
+                                />;
+                            }}
                         />
                         <Route
                             path="/yield"
-                            render={() => (
-                                <YieldPage
+                            render={() => {
+                                <Page
                                     initialized={this.state.initialized}
-                                />
-                            )}
+                                    title="Оценка доходности"
+                                    renderComponent={() => <Yield />}
+                                />;
+                            }}
                         />
                         <Route
                             path="/bestchoice"
-                            render={() => (
-                                <BestChoicePage
+                            render={() => {
+                                <Page
                                     initialized={this.state.initialized}
-                                />
-                            )}
+                                    title="Выбор наилучшего ПИФа"
+                                    renderComponent={() => <BestChoice />}
+                                />;
+                            }}
                         />
                         <Redirect exact from="/" to="/loaddata" />
                     </main>

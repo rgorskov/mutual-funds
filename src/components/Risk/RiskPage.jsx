@@ -1,7 +1,7 @@
 import React from 'react';
 
-function BestChoice({}) {
+function Risk({}) {
     return <div></div>;
 }
 
-export default BestChoice;
+export default Risk;
