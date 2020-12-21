@@ -38,7 +38,7 @@ class App extends React.Component {
                                 />
                             )}
                         />
-                        <Route
+                        {/* <Route
                             path="/datainfo"
                             render={() => (
                                 <Page
@@ -47,7 +47,7 @@ class App extends React.Component {
                                     renderComponent={() => <DataInfo />}
                                 />
                             )}
-                        />
+                        /> */}
                         <Route
                             path="/setupparams"
                             render={() => (

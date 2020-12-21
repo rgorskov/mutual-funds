@@ -18,7 +18,7 @@ const Navigation = () => {
                             <span>Исходные данные</span>
                         </NavLink>
                     </li>
-                    <li className={s.listItem}>
+                    {/* <li className={s.listItem}>
                         <NavLink
                             to="/datainfo"
                             className={s.link}
@@ -27,7 +27,7 @@ const Navigation = () => {
                             <i class="fas fa-chart-bar"></i>
                             <span>Обзор данных</span>
                         </NavLink>
-                    </li>
+                    </li> */}
                 </ul>
             </section>
             <section className={s.section}>
