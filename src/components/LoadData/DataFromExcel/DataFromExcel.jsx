@@ -6,28 +6,34 @@ class DataFromExcel extends React.Component {
         super(props);
     }
 
-    loadFileHandler(file) {
+    onFileChange(file) {
         const readingExcel = new Promise((resolve, reject) => {
             const fileReader = new FileReader();
             fileReader.readAsArrayBuffer(file);
             fileReader.onload = (e) => {
                 const bufferArray = e.target.result;
 
-                const wb = XLSX.read(bufferArray, { type: 'buffer' });
+                const wb = XLSX.read(bufferArray, {
+                    type: 'buffer',
+                    cellDates: true,
+                });
 
-                const dataByPages = wb.SheetNames.map((name) => {
+                const dataByPages = wb.SheetNames.map((name, id) => {
                     const workSheet = wb.Sheets[name];
-                    return {
+
+                    const res = {
+                        id,
                         name,
                         data: XLSX.utils.sheet_to_json(workSheet),
                     };
+                    return res;
                 });
                 resolve(dataByPages);
             };
             fileReader.onerror = (error) => reject(error);
         });
 
-        readingExcel.then().catch();
+        readingExcel.then(this.props.onSourceDataInitialize).catch();
     }
 
     render() {
@@ -39,7 +45,7 @@ class DataFromExcel extends React.Component {
                 <input
                     id="loadFile"
                     onChange={(e) => {
-                        this.loadFileHandler(e.target.files[0]);
+                        this.onFileChange(e.target.files[0]);
                     }}
                     class="d-none"
                     type="file"
