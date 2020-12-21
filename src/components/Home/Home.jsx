@@ -12,8 +12,14 @@ class Main extends React.Component {
         super(props);
         this.state = {
             initialized: false,
+            sourceData: [],
         };
     }
+
+    onSourceDataLoaded(sourceData) {
+        this.setState({ sourceData, initialized: true });
+    }
+
     render() {
         return (
             <>
@@ -23,7 +29,14 @@ class Main extends React.Component {
                         <Page
                             initialized={true}
                             title="Исходные данные"
-                            renderComponent={() => <LoadData />}
+                            renderComponent={() => (
+                                <LoadData
+                                    onSourceDataLoaded={this.onSourceDataLoaded.bind(
+                                        this
+                                    )}
+                                    sourceData={this.state.sourceData}
+                                />
+                            )}
                         />
                     )}
                 />

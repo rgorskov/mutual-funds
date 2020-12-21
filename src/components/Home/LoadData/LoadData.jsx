@@ -6,27 +6,18 @@ import DataPresentation from './DataPresentation/DataPresentation';
 class LoadData extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            sourceData: [],
-        };
-    }
-
-    onSourceDataInitialize(sourceData) {
-        this.setState({ sourceData });
     }
 
     render() {
         return (
             <div className={s.sourceDataWrapper}>
                 <DataFromExcel
-                    onSourceDataInitialize={this.onSourceDataInitialize.bind(
-                        this
-                    )}
+                    onSourceDataInitialize={this.props.onSourceDataLoaded}
                 />
                 {(() => {
-                    if (this.state.sourceData.length) {
+                    if (this.props.sourceData.length) {
                         return (
-                            <DataPresentation funds={this.state.sourceData} />
+                            <DataPresentation funds={this.props.sourceData} />
                         );
                     }
                 })()}
