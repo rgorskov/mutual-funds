@@ -51,12 +51,12 @@
     }
 
     &.active {
-        background-color: rgba(90, 106, 207, 0.1);
+        background-color: rgba($color: #2196f3, $alpha: 0.1);
         i {
-            color: rgba(90, 106, 207, 0.8);
+            color: #2196f3;
         }
         span {
-            color: rgba(90, 106, 207, 1);
+            color: #455a64;
             font-weight: 700;
         }
     }
