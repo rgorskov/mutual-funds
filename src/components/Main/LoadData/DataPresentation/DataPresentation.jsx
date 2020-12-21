@@ -52,9 +52,9 @@ class DataPresentation extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {chosenFundData.map((dataRow) => {
+                            {chosenFundData.map((dataRow, i) => {
                                 return (
-                                    <tr>
+                                    <tr key={i}>
                                         <td>
                                             {moment(dataRow.Date).format(
                                                 'DD.MM.YYYY'

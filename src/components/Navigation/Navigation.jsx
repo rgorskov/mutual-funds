@@ -14,7 +14,7 @@ const Navigation = () => {
                             className={s.link}
                             activeClassName={s.active}
                         >
-                            <i class="fas fa-file-upload"></i>
+                            <i className="fas fa-file-upload"></i>
                             <span>Исходные данные</span>
                         </NavLink>
                     </li>
@@ -24,7 +24,7 @@ const Navigation = () => {
                             className={s.link}
                             activeClassName={s.active}
                         >
-                            <i class="fas fa-chart-bar"></i>
+                            <i className="fas fa-chart-bar"></i>
                             <span>Обзор данных</span>
                         </NavLink>
                     </li> */}
@@ -39,7 +39,7 @@ const Navigation = () => {
                             className={s.link}
                             activeClassName={s.active}
                         >
-                            <i class="fas fa-sliders-h"></i>
+                            <i className="fas fa-sliders-h"></i>
                             <span>Параметры</span>
                         </NavLink>
                     </li>
@@ -49,7 +49,7 @@ const Navigation = () => {
                             className={s.link}
                             activeClassName={s.active}
                         >
-                            <i class="fas fa-arrow-down"></i>
+                            <i className="fas fa-arrow-down"></i>
                             <span>Оценка риска</span>
                         </NavLink>
                     </li>
@@ -59,7 +59,7 @@ const Navigation = () => {
                             className={s.link}
                             activeClassName={s.active}
                         >
-                            <i class="fas fa-arrow-up"></i>
+                            <i className="fas fa-arrow-up"></i>
                             <span>Оценка доходности</span>
                         </NavLink>
                     </li>
@@ -69,7 +69,7 @@ const Navigation = () => {
                             className={s.link}
                             activeClassName={s.active}
                         >
-                            <i class="fas fa-check"></i>
+                            <i className="fas fa-check"></i>
                             <span>Выбор лучшего ПИФа</span>
                         </NavLink>
                     </li>

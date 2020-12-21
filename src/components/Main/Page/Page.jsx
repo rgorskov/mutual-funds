@@ -12,7 +12,7 @@ export default function ({ initialized, title, renderComponent }) {
                     return (
                         <div>
                             <p className={s.noDataMessage}>
-                                <i class="fas fa-exclamation-triangle"></i>
+                                <i className="fas fa-exclamation-triangle"></i>
                                 <span>
                                     Для начала работы необходимо загрузить
                                     данные
