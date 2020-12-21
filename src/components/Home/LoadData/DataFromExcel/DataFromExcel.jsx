@@ -38,8 +38,8 @@ class DataFromExcel extends React.Component {
 
     render() {
         return (
-            <div class="btn-group">
-                <label htmlFor="loadFile" class="btn btn-primary btn-sm">
+            <div className="btn-group">
+                <label htmlFor="loadFile" className="btn btn-primary btn-sm">
                     Загрузить данные
                 </label>
                 <input
@@ -47,7 +47,7 @@ class DataFromExcel extends React.Component {
                     onChange={(e) => {
                         this.onFileChange(e.target.files[0]);
                     }}
-                    class="d-none"
+                    className="d-none"
                     type="file"
                     accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 />
