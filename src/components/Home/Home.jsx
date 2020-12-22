@@ -6,8 +6,11 @@ import Risk from './Risk/Risk';
 import Yield from './Yield/Yield';
 import BestChoice from './BestChoice/BestChoice';
 import Page from './Page/Page';
+import Decimal from 'decimal.js';
+import * as riskMeasure from '../../utils/riskMeasures';
+import * as yieldMeasure from '../../utils/yieldMeasures';
 
-const _ACCURACY_CONST = 100000;
+const _ACCURACY_CONST = 10000000;
 
 class Main extends React.Component {
     constructor(props) {
@@ -15,58 +18,74 @@ class Main extends React.Component {
         this.state = {
             initialized: false,
             sourceData: [], // [{id, name, yieldByDays: [{ Date, Value }]]
-            normilizedData: [], // [{id, name, values:[]}]
+            normalizedData: [], // [{id, name, values:[]}]
             workData: [], // [{id, name, kEval, kUsing, intervalLen, randomVar:[x,p, entryCount]}]
+            alpha: new Decimal(0.95),
+            momentI: 2,
+            globalK: null,
+            risks: [],
+            yields: [],
         };
     }
 
-    _normilizeData(notNormilizeDataArr) {
-        const res = notNormilizeDataArr.map(({ id, name, yieldByDays }) => {
+    _normalizeData(notNormalizeDataArr) {
+        const res = notNormalizeDataArr.map(({ id, name, yieldByDays }) => {
             const onlyYields = yieldByDays
-                .map((ybd) => Math.round(ybd.Value * _ACCURACY_CONST))
-                .sort((a, b) => a - b);
+                .map((ybd) => new Decimal(ybd.Value))
+                .sort((a, b) => a.sub(b).toNumber());
+
             const min = onlyYields[0],
                 max = onlyYields[onlyYields.length - 1];
 
-            const normilized = onlyYields.map((y) => {
-                const div = (y - min) / (max - min);
-                return Math.round(div * _ACCURACY_CONST);
+            const normalized = onlyYields.map((y) => {
+                const ySubMin = y.sub(min),
+                    maxSubMin = max.sub(min);
+                const div = ySubMin.div(maxSubMin).toNumber();
+                return div;
             });
 
-            return { id, name, values: normilized };
+            return { id, name, values: normalized };
         });
         console.log(res);
+
         return res;
     }
 
-    _createWorkData(normilizedDataArr) {
-        const res = normilizedDataArr.map(({ id, name, values }) => {
-            const kEval = 1 + 3.22 * Math.log10(values.length);
-            const kUsing = Math.ceil(kEval);
-            const intervalLen = _ACCURACY_CONST / kUsing;
+    _createWorkData(normalizedDataArr, defaultK = null) {
+        const res = normalizedDataArr.map(({ id, name, values }) => {
+            //1 + 3.22 * Math.log10(values.length);
+            const kEval = Decimal(1)
+                .plus(Decimal(3.22).mul(Decimal(values.length).log(10)))
+                .toNumber();
+            const kUsing = defaultK !== null ? defaultK : Math.ceil(kEval);
+            const intervalLen = 1 / kUsing;
             const commonCount = values.length;
             let randomVar = [];
 
             for (
-                let i = 1, currX = 0, nextX = intervalLen;
+                let i = 1,
+                    currX = new Decimal(0),
+                    nextX = new Decimal(intervalLen);
                 i <= kUsing;
-                i++, currX += intervalLen, nextX += intervalLen
+                i++,
+                    currX = currX.plus(intervalLen),
+                    nextX = nextX.plus(intervalLen)
             ) {
                 let entryCount = (i === kUsing
-                    ? values.filter((v) => v >= currX && v <= nextX)
-                    : values.filter((v) => v >= currX && v < nextX)
+                    ? values.filter(
+                          (v) => v >= currX.toNumber() && v <= nextX.toNumber()
+                      )
+                    : values.filter(
+                          (v) => v >= currX.toNumber() && v < nextX.toNumber()
+                      )
                 ).length;
 
-                let _x = (currX + nextX) / 2,
+                let x = currX.plus(nextX).div(2),
                     p = entryCount / commonCount;
-                let x = _x / _ACCURACY_CONST,
-                    _p = Math.round(_ACCURACY_CONST * p);
 
                 randomVar = randomVar.concat({
                     x,
                     p,
-                    _x,
-                    _p,
                     entryCount,
                 });
             }
@@ -78,12 +97,15 @@ class Main extends React.Component {
     }
 
     onSourceDataLoaded(sourceData) {
+        const normalizedData = this._normalizeData(sourceData),
+            workData = this._createWorkData(normalizedData);
         this.setState({
             sourceData,
+            normalizedData,
+            workData,
             initialized: true,
-            normilizedData: this._normilizeData(sourceData),
         });
-        this._createWorkData(this.state.normilizedData);
+        console.log(workData);
     }
 
     render() {
