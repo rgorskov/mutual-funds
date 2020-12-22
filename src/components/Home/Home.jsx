@@ -13,11 +13,34 @@ class Main extends React.Component {
         this.state = {
             initialized: false,
             sourceData: [],
+            normilizedData: [],
         };
     }
 
+    _normilizeData(notNormilizeData) {
+        const res = notNormilizeData.map((d) => {
+            const name = d.name,
+                id = d.id;
+            const onlyYields = d.yieldByDays
+                .map((ybd) => ybd.Value)
+                .sort((a, b) => a - b);
+            const min = onlyYields[0],
+                max = onlyYields[onlyYields.length - 1];
+
+            const normilized = onlyYields.map((y) => (y - min) / (max - min));
+
+            return { id, name, values: normilized };
+        });
+        return res;
+    }
+
     onSourceDataLoaded(sourceData) {
-        this.setState({ sourceData, initialized: true });
+        this.setState({
+            sourceData,
+            initialized: true,
+            normilizedData: this._normilizeData(sourceData),
+        });
+        console.log(this.state.normilizedData);
     }
 
     render() {
