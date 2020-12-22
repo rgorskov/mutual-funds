@@ -10,6 +10,7 @@ import Decimal from 'decimal.js';
 import disperSKO from '../../utils/disperSKO';
 import mo from '../../utils/mo';
 import moments from '../../utils/moments';
+import varCvar from '../../utils/varCvar';
 
 class Main extends React.Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class Main extends React.Component {
             yields: [],
         };
         console.log(
-            moments(
+            varCvar(
                 [
                     { x: 0.05, p: 0.00203 },
                     { x: 0.15, p: 0.004065 },
@@ -39,8 +40,7 @@ class Main extends React.Component {
                     { x: 0.85, p: 0.00813 },
                     { x: 0.95, p: 0.002033 },
                 ],
-                0.53435,
-                6
+                0.99
             )
         );
     }
