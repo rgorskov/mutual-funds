@@ -11,7 +11,7 @@ import disperSKO from '../../utils/disperSKO';
 import mo from '../../utils/mo';
 import moments from '../../utils/moments';
 import varCvar from '../../utils/varCvar';
-import ozhPol from '../../utils/ozhPol';
+import ojidPol from '../../utils/ozhPol';
 import vzvPol from '../../utils/vzvPol';
 import rangPol from '../../utils/rangPol';
 
@@ -99,15 +99,56 @@ class Main extends React.Component {
         return res;
     }
 
+    _createRisks(workData) {
+        return workData.map((d) => {
+            const varCvarValues = varCvar(d.randomVar, this.state.alpha),
+                dispSkoValues = disperSKO(d.randomVar),
+                momentsValues = moments(
+                    d.randomVar,
+                    mo(d.randomVar),
+                    this.state.momentI
+                );
+            return {
+                id: d.id,
+                name: d.name,
+                varr: varCvarValues.varr,
+                cvar: varCvarValues.cvar,
+                disp: dispSkoValues.disper,
+                sko: dispSkoValues.sko,
+                moment: momentsValues.moment,
+                stdMoment: momentsValues.standMoment,
+            };
+        });
+    }
+
+    _createYields(workData) {
+        return workData.map((d) => {
+            return {
+                id: d.id,
+                name: d.name,
+                mo: mo(d.randomVar),
+                ojid: ojidPol(d.randomVar),
+                vzv: vzvPol(d.randomVar),
+                rang: rangPol(d.randomVar),
+            };
+        });
+    }
+
     onSourceDataLoaded(sourceData) {
         const normalizedData = this._normalizeData(sourceData),
             workData = this._createWorkData(normalizedData);
+
+        const risks = this._createRisks(workData),
+            yields = this._createYields(workData);
         this.setState({
             sourceData,
             normalizedData,
             workData,
             initialized: true,
+            risks,
+            yields,
         });
+        window.qqq = this.state;
     }
 
     render() {
@@ -146,7 +187,9 @@ class Main extends React.Component {
                         <Page
                             initialized={this.state.initialized}
                             title="Оценка риска"
-                            renderComponent={() => <Risk />}
+                            renderComponent={() => (
+                                <Risk fundsRisks={this.state.risks} />
+                            )}
                         />
                     )}
                 />
@@ -156,7 +199,9 @@ class Main extends React.Component {
                         <Page
                             initialized={this.state.initialized}
                             title="Оценка доходности"
-                            renderComponent={() => <Yield />}
+                            renderComponent={() => (
+                                <Yield fundsYields={this.state.yields} />
+                            )}
                         />
                     )}
                 />
