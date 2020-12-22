@@ -10,22 +10,22 @@ class DataPresentation extends React.Component {
     }
 
     onChangeId(newId) {
-        if (newId != this.state.currentId) {
+        if (newId !== this.state.currentId) {
             this.setState({ currentId: newId });
         }
     }
 
     render() {
         const chosenFundData = this.props.funds.find(
-            (_, i) => i == this.state.currentId
-        ).data;
+            (_, i) => i === this.state.currentId
+        ).yieldByDays;
         return (
             <div className="row mt-5">
                 <div className="col-12 col-md-4 col-xl-3 col-xxl-2">
                     <div className="list-group">
                         {this.props.funds.map((fund, i) => {
                             const activeClass =
-                                i == this.state.currentId ? ' active' : '';
+                                i === this.state.currentId ? ' active' : '';
                             return (
                                 <button
                                     key={i}

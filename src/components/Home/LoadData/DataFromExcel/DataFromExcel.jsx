@@ -24,7 +24,7 @@ class DataFromExcel extends React.Component {
                     const res = {
                         id,
                         name,
-                        data: XLSX.utils.sheet_to_json(workSheet),
+                        yieldByDays: XLSX.utils.sheet_to_json(workSheet),
                     };
                     return res;
                 });
