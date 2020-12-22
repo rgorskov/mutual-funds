@@ -7,8 +7,7 @@ import Yield from './Yield/Yield';
 import BestChoice from './BestChoice/BestChoice';
 import Page from './Page/Page';
 import Decimal from 'decimal.js';
-import * as riskMeasure from '../../utils/riskMeasures';
-import * as yieldMeasure from '../../utils/yieldMeasures';
+import disperSKO from '../../utils/disperSKO';
 
 const _ACCURACY_CONST = 10000000;
 
@@ -105,7 +104,6 @@ class Main extends React.Component {
             workData,
             initialized: true,
         });
-        console.log(workData);
     }
 
     render() {
