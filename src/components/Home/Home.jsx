@@ -9,6 +9,7 @@ import Page from './Page/Page';
 import Decimal from 'decimal.js';
 import disperSKO from '../../utils/disperSKO';
 import mo from '../../utils/mo';
+import moments from '../../utils/moments';
 
 class Main extends React.Component {
     constructor(props) {
@@ -24,6 +25,24 @@ class Main extends React.Component {
             risks: [],
             yields: [],
         };
+        console.log(
+            moments(
+                [
+                    { x: 0.05, p: 0.00203 },
+                    { x: 0.15, p: 0.004065 },
+                    { x: 0.25, p: 0.018293 },
+                    { x: 0.35, p: 0.044715 },
+                    { x: 0.45, p: 0.245935 },
+                    { x: 0.55, p: 0.477642 },
+                    { x: 0.65, p: 0.166667 },
+                    { x: 0.75, p: 0.030488 },
+                    { x: 0.85, p: 0.00813 },
+                    { x: 0.95, p: 0.002033 },
+                ],
+                0.53435,
+                6
+            )
+        );
     }
 
     _normalizeData(notNormalizeDataArr) {
