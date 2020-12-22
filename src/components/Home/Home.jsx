@@ -23,29 +23,12 @@ class Main extends React.Component {
             sourceData: [], // [{id, name, yieldByDays: [{ Date, Value }]]
             normalizedData: [], // [{id, name, values:[]}]
             workData: [], // [{id, name, kEval, kUsing, intervalLen, randomVar:[x,p, entryCount]}]
-            alpha: new Decimal(0.95),
+            alpha: 0.95,
             momentI: 2,
             globalK: null,
-            risks: [],
-            yields: [],
+            risks: [], // [{id,name,varr,cvar,disp,sko,moment,stdMoment}]
+            yields: [], // [{id,name,mo,ojid,vzv,rang}]
         };
-        console.log(
-            rangPol(
-                [
-                    { x: 0.05, p: 0.00203 },
-                    { x: 0.15, p: 0.004065 },
-                    { x: 0.25, p: 0.018293 },
-                    { x: 0.35, p: 0.044715 },
-                    { x: 0.45, p: 0.245935 },
-                    { x: 0.55, p: 0.477642 },
-                    { x: 0.65, p: 0.166667 },
-                    { x: 0.75, p: 0.030488 },
-                    { x: 0.85, p: 0.00813 },
-                    { x: 0.95, p: 0.002033 },
-                ],
-                0.99
-            )
-        );
     }
 
     _normalizeData(notNormalizeDataArr) {

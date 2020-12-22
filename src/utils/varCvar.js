@@ -3,7 +3,7 @@ import Decimal from 'decimal.js';
 const calculateVarDecimal = (randomVar, alpha) => {
     let probSumD = new Decimal(randomVar[0].p),
         xD = new Decimal(randomVar[0].x),
-        alphaD = new Decimal(alpha);
+        alphaD = Decimal(1).minus(Decimal(alpha));
     for (let i = 0; i < randomVar.length; i++) {
         let nextProbSumD = probSumD.plus(Decimal(randomVar[i].p)),
             nextXD = Decimal(randomVar[i].x);
@@ -30,7 +30,7 @@ const calculateCvarDecimal = (randomVar, varD) => {
 };
 
 export default function (randomVar, alpha) {
-    const varD = calculateVarDecimal(randomVar, 1 - alpha);
+    const varD = calculateVarDecimal(randomVar, alpha);
     const cvarD = calculateCvarDecimal(randomVar, varD);
     return {
         varr: varD.toNumber(),
