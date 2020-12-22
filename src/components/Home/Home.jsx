@@ -8,8 +8,7 @@ import BestChoice from './BestChoice/BestChoice';
 import Page from './Page/Page';
 import Decimal from 'decimal.js';
 import disperSKO from '../../utils/disperSKO';
-
-const _ACCURACY_CONST = 10000000;
+import mo from '../../utils/mo';
 
 class Main extends React.Component {
     constructor(props) {
