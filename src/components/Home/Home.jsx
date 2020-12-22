@@ -12,6 +12,7 @@ import mo from '../../utils/mo';
 import moments from '../../utils/moments';
 import varCvar from '../../utils/varCvar';
 import ozhPol from '../../utils/ozhPol';
+import vzvPol from '../../utils/vzvPol';
 
 class Main extends React.Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class Main extends React.Component {
             yields: [],
         };
         console.log(
-            ozhPol(
+            vzvPol(
                 [
                     { x: 0.05, p: 0.00203 },
                     { x: 0.15, p: 0.004065 },
