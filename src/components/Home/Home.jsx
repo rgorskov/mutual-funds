@@ -100,15 +100,11 @@ class Main extends React.Component {
         return res;
     }
 
-    _createRisks(workData) {
+    _createRisks(workData, alpha, momentI) {
         return workData.map((d) => {
-            const varCvarValues = varCvar(d.randomVar, this.state.alpha),
+            const varCvarValues = varCvar(d.randomVar, alpha),
                 dispSkoValues = disperSKO(d.randomVar),
-                momentsValues = moments(
-                    d.randomVar,
-                    mo(d.randomVar),
-                    this.state.momentI
-                );
+                momentsValues = moments(d.randomVar, mo(d.randomVar), momentI);
             return {
                 id: d.id,
                 name: d.name,
@@ -139,7 +135,11 @@ class Main extends React.Component {
         const normalizedData = this._normalizeData(sourceData),
             workData = this._createWorkData(normalizedData);
 
-        const risks = this._createRisks(workData),
+        const risks = this._createRisks(
+                workData,
+                this.state.alpha,
+                this.state.momentI
+            ),
             yields = this._createYields(workData);
         this.setState({
             sourceData,
@@ -149,10 +149,31 @@ class Main extends React.Component {
             risks,
             yields,
         });
-        window.qqq = this.state;
     }
 
-    onParamsChange({ alpha, beta, intervalCount, momentI }) {}
+    onParamsChange({ alpha, beta, intervalCount, momentI }) {
+        let setStateObj = {};
+        if (intervalCount !== null) {
+            setStateObj.workData = this._createWorkData(
+                this.state.normalizedData,
+                intervalCount
+            );
+            setStateObj.intervalCount = intervalCount;
+        } else {
+            setStateObj.intervalCount = null;
+        }
+        setStateObj.risks = this._createRisks(
+            setStateObj.workData || this.state.workData,
+            alpha,
+            momentI
+        );
+        setStateObj.alpha = alpha;
+        setStateObj.momentI = momentI;
+
+        setStateObj.beta = beta;
+
+        this.setState(setStateObj);
+    }
 
     render() {
         return (

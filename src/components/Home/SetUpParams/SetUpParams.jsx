@@ -21,13 +21,18 @@ class SetUpParams extends React.Component {
             intervalCount: this.state.intervalCount,
             momentI: this.state.momentI,
         });
+        this.setState({ change: false });
     }
 
     onUseStergesChange() {
+        const useSterges = !this.state.useSterges;
+        const intervalCount = useSterges
+            ? null
+            : this.state.defaultIntervalCountValue;
         this.setState({
-            useSterges: !this.state.useSterges,
-            intervalCount: null,
-            change: this.checkChange({ intervalCount: null }),
+            useSterges,
+            intervalCount,
+            change: this.checkChange({ intervalCount }),
         });
     }
 
@@ -49,8 +54,11 @@ class SetUpParams extends React.Component {
         this.setState({ alpha: alpha, change: this.checkChange({ alpha }) });
     }
 
-    onMomentIChange(i) {
-        this.setState({ momentI: i, change: this.checkChange({ momentI: i }) });
+    onMomentIChange(e) {
+        this.setState({
+            momentI: e.target.value,
+            change: this.checkChange({ momentI: e.target.value }),
+        });
     }
 
     checkChange({
