@@ -2,7 +2,8 @@ import Decimal from 'decimal.js';
 
 const gamma = 0.69;
 
-const calcgpD = (pD) => {
+const calcgpD = (p) => {
+    const pD = new Decimal(p);
     const e1 = Decimal(Decimal(1).minus(pD)).pow(gamma);
     const e2 = pD.pow(gamma).plus(e1);
     const e3 = e2.pow(Decimal(1).div(gamma));
@@ -25,11 +26,14 @@ export default function (randomVar) {
     const xsD = randomVar.map((rv) => new Decimal(rv.x)),
         psD = randomVar.map((rv) => new Decimal(rv.p));
     let sumD = calcuxD(xsD[0]).plus(calcgpD(psD[0]));
-
     // const _xs = xsD.map((x) => x.toNumber()),
     //     _ps = psD.map((p) => p.toNumber());
 
+    //debugger;
     for (let i = 1; i < randomVar.length; i++) {
+        // if (i == randomVar.length - 1) {
+        //     debugger;
+        // }
         let psFirstD = psD.slice(0, i + 1),
             psSecondD = psD.slice(0, i);
 
@@ -42,8 +46,8 @@ export default function (randomVar) {
         // let _psFSum = psFDSum.toNumber(),
         //     _psSSum = psSDSum.toNumber();
 
-        let gpFirst = calcgpD(psFDSum),
-            gpSecond = calcgpD(psSDSum);
+        let gpFirst = calcgpD(psFDSum.toNumber()),
+            gpSecond = calcgpD(psSDSum.toNumber());
 
         // let _grFirst = gpFirst.toNumber(),
         //     _gpSecond = gpSecond.toNumber();
@@ -53,6 +57,9 @@ export default function (randomVar) {
         // let _uxi = uxi.toNumber();
 
         sumD = sumD.plus(uxi.times(gpFirst.minus(gpSecond)));
+        // if (isNaN(sumD.toNumber())) {
+        //     debugger;
+        // }
     }
 
     return sumD.toNumber();
