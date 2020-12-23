@@ -53,9 +53,11 @@ class BestChoice extends React.Component {
             if (r.id != y.id) {
                 y = yields.find((yd) => yd.id == r.id);
             }
-            let criteriaD = Decimal(0.5)
+            let criteriaD = Decimal(this.props.beta)
                 .times(y.value)
-                .minus(Decimal(0.5).times(r.value));
+                .minus(
+                    Decimal(Decimal(1).minus(this.props.beta)).times(r.value)
+                );
             return {
                 name: r.name,
                 criteria: criteriaD.toNumber(),

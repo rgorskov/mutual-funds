@@ -24,6 +24,7 @@ class Main extends React.Component {
             normalizedData: [], // [{id, name, values:[]}]
             workData: [], // [{id, name, kEval, kUsing, intervalLen, randomVar:[x,p, entryCount]}]
             alpha: 0.95,
+            beta: 0.5,
             momentI: 2,
             globalK: null,
             risks: [], // [{id,name,varr,cvar,disp,sko,moment,stdMoment}]
@@ -215,6 +216,7 @@ class Main extends React.Component {
                                 <BestChoice
                                     risks={this.state.risks}
                                     yields={this.state.yields}
+                                    beta={this.state.beta}
                                 />
                             )}
                         />
