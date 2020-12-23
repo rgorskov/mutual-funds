@@ -4,14 +4,14 @@ function Risk({ fundsRisks }) {
     return (
         <div>
             <div className="table-responsive">
-                <table className="table table-striped table-hover">
+                <table className="table table-striped table-hover word-break-break-all">
                     <thead className="table-primary">
                         <tr>
                             <th></th>
                             <th>Дисперсия</th>
                             <th>СКО</th>
-                            <th>VaR</th>
-                            <th>CVaR</th>
+                            <th className="word-break-keep-all">VaR</th>
+                            <th className="word-break-keep-all">CVaR</th>
                             <th>Левосторонний момент</th>
                             <th>Стандартный левосторонний момент</th>
                         </tr>

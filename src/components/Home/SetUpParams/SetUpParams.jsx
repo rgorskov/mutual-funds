@@ -88,8 +88,8 @@ class SetUpParams extends React.Component {
                         Применить
                     </button>
                 </div>
-                <div className="row">
-                    <div className="offset-2 col-xxl-3 my-5 py-5">
+                <div className="row justify-content-around">
+                    <div className="col-12 col-lg-6 col-xl-4 col-xxl-3 my-5 py-5">
                         <h5 className="mb-4">
                             Количество разбиений интервального вариационного
                             ряда
@@ -137,7 +137,7 @@ class SetUpParams extends React.Component {
                             />
                         </div>
                     </div>
-                    <div className="offset-2 col-xxl-3 my-5 py-5 d-flex flex-column justify-content-between">
+                    <div className="col-12 col-lg-6 col-xl-4 col-xxl-3 my-5 py-5 d-flex flex-column justify-content-between">
                         <h5 className="mb-4">Отношение предпочтения</h5>
                         <div class="">
                             <label for="beta" class="form-label m-0">
@@ -156,8 +156,8 @@ class SetUpParams extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div className="offset-2 col-xxl-3 my-5 py-5 d-flex flex-column justify-content-between">
+                <div class="row justify-content-around">
+                    <div className="col-12 col-lg-6 col-xl-4 col-xxl-3 my-5 py-5 d-flex flex-column justify-content-between">
                         <h5 className="mb-4">
                             Значение доверительной вероятности для критериев VaR
                             и CVaR
@@ -179,7 +179,7 @@ class SetUpParams extends React.Component {
                             })}
                         </div>
                     </div>
-                    <div className="offset-2 col-xxl-3 my-5 py-5 d-flex flex-column justify-content-between">
+                    <div className="col-12 col-lg-6 col-xl-4 col-xxl-3 my-5 py-5 d-flex flex-column justify-content-between">
                         <h5 className="mb-4">
                             Значение порядка для левостороннего и стандартного
                             левостороннего моментов

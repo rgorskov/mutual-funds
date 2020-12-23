@@ -4,7 +4,7 @@ function Yield({ fundsYields }) {
     return (
         <div>
             <div className="table-responsive">
-                <table className="table table-striped table-hover">
+                <table className="table table-striped table-hover word-break-break-all">
                     <thead class="table-primary">
                         <tr>
                             <th></th>
