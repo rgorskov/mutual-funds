@@ -184,7 +184,7 @@ class Main extends React.Component {
                                 <SetUpParams
                                     alpha={this.state.alpha}
                                     beta={this.state.beta}
-                                    intervalCount={this.state.globalK}
+                                    intervalCount={this.state.intervalCount}
                                     momentI={this.state.momentI}
                                     onParamsChange={this.onParamsChange.bind(
                                         this
