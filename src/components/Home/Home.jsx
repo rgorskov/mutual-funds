@@ -26,7 +26,7 @@ class Main extends React.Component {
             alpha: 0.95,
             beta: 0.5,
             momentI: 2,
-            globalK: null,
+            intervalCount: null,
             risks: [], // [{id,name,varr,cvar,disp,sko,moment,stdMoment}]
             yields: [], // [{id,name,mo,ojid,vzv,rang}]
         };
@@ -152,6 +152,8 @@ class Main extends React.Component {
         window.qqq = this.state;
     }
 
+    onParamsChange({ alpha, beta, intervalCount, momentI }) {}
+
     render() {
         return (
             <>
@@ -178,7 +180,17 @@ class Main extends React.Component {
                         <Page
                             initialized={this.state.initialized}
                             title="Настройка параметров"
-                            renderComponent={() => <SetUpParams />}
+                            renderComponent={() => (
+                                <SetUpParams
+                                    alpha={this.state.alpha}
+                                    beta={this.state.beta}
+                                    intervalCount={this.state.globalK}
+                                    momentI={this.state.momentI}
+                                    onParamsChange={this.onParamsChange.bind(
+                                        this
+                                    )}
+                                />
+                            )}
                         />
                     )}
                 />
