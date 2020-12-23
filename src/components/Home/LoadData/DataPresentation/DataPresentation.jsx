@@ -25,7 +25,9 @@ class DataPresentation extends React.Component {
                     <div className="list-group">
                         {this.props.funds.map((fund, i) => {
                             const activeClass =
-                                i === this.state.currentId ? ' active' : '';
+                                i === this.state.currentId
+                                    ? ' list-group-item-secondary fw-bold'
+                                    : '';
                             return (
                                 <button
                                     key={i}

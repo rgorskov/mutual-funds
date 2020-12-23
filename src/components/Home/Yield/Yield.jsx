@@ -5,7 +5,7 @@ function Yield({ fundsYields }) {
         <div>
             <div className="table-responsive">
                 <table className="table table-striped table-hover">
-                    <thead>
+                    <thead class="table-primary">
                         <tr>
                             <th></th>
                             <th>Математическое ожидание</th>

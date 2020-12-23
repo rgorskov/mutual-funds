@@ -5,7 +5,7 @@ function Risk({ fundsRisks }) {
         <div>
             <div className="table-responsive">
                 <table className="table table-striped table-hover">
-                    <thead>
+                    <thead className="table-primary">
                         <tr>
                             <th></th>
                             <th>Дисперсия</th>

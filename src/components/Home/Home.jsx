@@ -211,7 +211,12 @@ class Main extends React.Component {
                         <Page
                             initialized={this.state.initialized}
                             title="Выбор наилучшего ПИФа"
-                            renderComponent={() => <BestChoice />}
+                            renderComponent={() => (
+                                <BestChoice
+                                    risks={this.state.risks}
+                                    yields={this.state.yields}
+                                />
+                            )}
                         />
                     )}
                 />
